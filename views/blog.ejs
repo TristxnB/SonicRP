@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SonicRP - Nous Rejoindre</title>
-    <link rel="stylesheet" href="/static/joinus.css">
+    <title>SonicRP - Le Blog</title>
+    <link rel="stylesheet" href="/static/blog.css">
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.css">
 
@@ -15,20 +15,24 @@
         <img src="/static/imgs/LogoSDev-noback.png" draggable="false">
         <div class="links">
             <a href="/">Accueil</a>
-            <a href="/joinus" class="selected">Nous Rejoindre</a>
-            <a href="/blog">Blog</a>
+            <a href="/joinus">Nous Rejoindre</a>
+            <a href="/blog" class="selected">Blog</a>
             <a href="https://discord.gg/uRSEF3kDk7" target="__blank">Discord</a>
         </div>
     </header>
 
     <div class="wrapper">
-        <div class="joinus">
-            <img src="/static/imgs/LogoSDev-noback.png" draggable="false">
-            <div class="spacer"></div>
-            <div class="buttons">
-                <a href='steam: "-applaunch 4020"'><i class="fab fa-steam"></i>Se connecter au serveur.</a>
-                <a href="https://discord.gg/uRSEF3kDk7" target="__blank"><i class="fab fa-discord"></i>Rejoindre le discord.</a>
-            </div>
+        <div class="posts">
+            <% if (postsJson.posts.length == 0) { %>
+                <span class="nothing">Il n'y à aucun poste !</span>
+            <% } else { %>
+                <% postsJson.posts.forEach(element => { %>
+                    <div class="post">
+                        <h1 class="title"><%= element.title %></h1>
+                        <span class="content"><%= element.content %></span>
+                    </div>
+                <% }) %>
+            <% } %>
         </div>
     </div>
 

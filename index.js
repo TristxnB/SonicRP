@@ -1,3 +1,5 @@
+//Dependances
+
 let express = require('express')
 let app = express();
 let bodyParser = require("body-parser")
@@ -14,9 +16,13 @@ if(!fs.existsSync("./database/posts.json")){
     fs.writeFileSync("./database/posts.json", "[]")
 }
 
+//Variables globales
+
 let postsJsonFile = './database/posts.json'
 let postsJson = JSON.parse(fs.readFileSync(postsJsonFile))
 const JWT_TOKEN = "39bfVIivO2RbDdZlnECA6gtV4TqFag7W"
+
+//Middlewares
 
 app.use(favicon(path.join(__dirname, 'static/imgs', 'LogoSDev.png')))
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,6 +34,8 @@ app.use(helmet());
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname));
 
+//Routes non-protéges
+
 app.get('/', (req, res)=>{
     res.render('index')
 })
@@ -35,6 +43,14 @@ app.get('/', (req, res)=>{
 app.get('/joinus', (req, res)=>{
     res.render('joinus')
 })
+
+app.get('/blog', (req, res) =>{
+    res.render('blog', {
+        postsJson: postsJson
+    })
+})
+
+//Routes protéges
 
 app.get('/blog/admin', (req, res)=>{
     verifyToken(req.cookies.token).then((userInfos)=>{
@@ -115,6 +131,8 @@ app.post("/blog/login", (req, res)=>{
     }
 })
 
+//Fonctions utiles
+
 function verifyToken(token){
     return new Promise((resolve, reject) =>{
         jwt.verify(token, JWT_TOKEN, function(err, decoded){
@@ -127,6 +145,7 @@ function verifyToken(token){
     })
 }
 
+//Démarrage du serveur
 
 app.listen(2301, function(){
     console.log("Le serveur écoute sur le port 2301. Logs :")
