@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SonicRP - Login</title>
+    <link rel="stylesheet" href="/static/login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.css">
+
+
+</head>
+<body>
+    <header>
+        <img src="/static/imgs/LogoSDev-noback.png" draggable="false">
+    </header>
+    <div class="wrapper">
+        <div class="login">
+            <h1>Se connecter.</h1>
+            <form action="/blog/login" method="post">
+                <input type="text" name="srp_admin" id="srp_admin" placeholder="Nom d'utilisateur administrateur.">
+                <input type="password" name="srp_password" id="srp_password" placeholder="Mot de passe administrateur.">
+                <input type="submit" value="Go !">
+            </form>
+            <% if (err) { %>
+                <span class="error"><%= err %></span>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

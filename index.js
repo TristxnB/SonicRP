@@ -8,6 +8,13 @@ let favicon = require('serve-favicon')
 let bcrypt = require('bcrypt')
 let jwt = require("jsonwebtoken")
 let path = require('path')
+let fs = require('fs')
+let adminUser = require('./database/admin.json')
+if(!fs.existsSync("./database/posts.json")){
+    fs.writeFileSync("./database/posts.json", "[]")
+}
+
+let posts = require('./database/posts.json')
 
 const JWT_TOKEN = "39bfVIivO2RbDdZlnECA6gtV4TqFag7W"
 
@@ -28,6 +35,52 @@ app.get('/', (req, res)=>{
 app.get('/joinus', (req, res)=>{
     res.render('joinus')
 })
+
+app.get('/blog/create', (req, res)=>{
+    verifyToken(req.cookies.token).then((userInfos)=>{
+        res.render('admin')
+    }).catch(()=>{
+        res.redirect('/blog/login')
+    })
+
+})
+
+app.get('/blog/login', (req, res)=>{
+    verifyToken(req.cookies.token).then((userInfos)=>{
+        res.redirect('/blog/create')
+    }).catch(()=>{
+        res.render('login', {
+            err: null
+        })
+    })
+
+})
+
+app.post("/blog/login", (req, res)=>{
+    let user = req.body.srp_admin
+    let pass = req.body.srp_password
+
+    if(user == adminUser.username && pass == adminUser.password){
+        res.cookie('token', jwt.sign({user: user}, JWT_TOKEN))
+        res.redirect('/blog/create')
+    }else{
+        res.render('login', {
+            err: "Identifiants incorrects !"
+        })
+    }
+})
+
+function verifyToken(token){
+    return new Promise((resolve, reject) =>{
+        jwt.verify(token, JWT_TOKEN, function(err, decoded){
+            if(err){
+                reject()
+            }else{
+                resolve(decoded)
+            }
+        })
+    })
+}
 
 
 app.listen(2301, function(){
