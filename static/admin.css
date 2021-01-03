@@ -1,0 +1,146 @@
+body, html{
+    margin: 0;
+    padding: 0;
+}
+
+*{
+    box-sizing: border-box;
+    font-family: "Montserrat";
+}
+
+header{
+    padding: 15px;
+    background-color: #222222;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+header img{
+    width: 8em;
+}
+
+
+.selected{
+    background: #00B4DB;
+    background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
+    background: linear-gradient(to right, #0083B0, #00B4DB);
+    color: white !important;
+}
+
+
+.number{
+    color: darkgray;
+}
+
+.title{
+    margin: 0;
+    margin-top: 1em;
+}
+
+.post{
+    background-color: whitesmoke;
+    padding: 15px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post a{
+    text-decoration: none;
+    color: tomato;
+}
+
+.post i{
+    font-size: 2.5em;
+}
+
+.posts{
+    margin-top: 3em;
+}
+
+.wrapper{
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.addnew{
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.addnew:hover{
+    cursor: pointer;
+}
+
+#addPost{
+    color: white;
+    background: #00B4DB;
+    background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
+    background: linear-gradient(to right, #0083B0, #00B4DB);
+    font-family: "Comfortaa";
+    margin: 5px;
+    padding: 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    width: fit-content;
+}
+
+#addPost:hover{
+    cursor: pointer;
+}
+
+#addPost i{
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.create{
+    position: absolute;
+    top: 20%;
+    left: calc(50% - 12.5em);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    padding: 15px;
+    height: 15em;
+    width: 25em;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.create h1{
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 95%;
+}
+
+input{
+    margin: 5px;
+    width: 100%;
+}
+
+input[type="text"], input[type="password"]{
+    padding: 5px;
+}
+
+input[type="submit"]{
+    padding: 10px;
+}

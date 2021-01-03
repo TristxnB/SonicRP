@@ -4,8 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SonicRP - Admin</title>
+    <link rel="stylesheet" href="/static/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.css">
+
+
 </head>
 <body>
+    <header>
+        <img src="/static/imgs/LogoSDev-noback.png" draggable="false">
+    </header>
+
+    <div class="wrapper">
+        <h1 class="title">Liste des postes du blog :</h1>
+        <span class="number">Nombre de postes : <%= postsJson.posts.length%></span>
+        <span id="addPost"><i class="fas fa-plus-square"></i>Ajouter un post</span>
     
+        <div class="posts">
+            <% postsJson.posts.forEach(element => { %>
+                <div class="post">
+                    <h1><%= element.title %></h1>
+                    <div class="options">
+                        <a href="/blog/delete/<%= element.id %>"><i class="fas fa-trash-alt"></i></a>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+    <div class="create" id="create">
+        <h1>Créer un poste.</h1>
+        <form action="/blog/create" method="post">
+            <input type="text" name="post_title" id="post_title" placeholder="Titre du poste.">
+            <input type="text" name="post_content" id="post_content" placeholder="Contenu du post.">
+            <input type="submit" value="Go !">
+        </form>
+    </form>
+    </div>
+
+    <script src="/static/script.js"></script>
 </body>
 </html>
