@@ -13,7 +13,7 @@ let path = require('path')
 let fs = require('fs')
 let adminUser = require('./database/admin.json')
 if(!fs.existsSync("./database/posts.json")){
-    fs.writeFileSync("./database/posts.json", "[]")
+    fs.writeFileSync("./database/posts.json", '{"posts":[]}')
 }
 
 //Variables globales
