@@ -25,6 +25,10 @@ app.get('/', (req, res)=>{
     res.render('index')
 })
 
+app.get('/joinus', (req, res)=>{
+    res.render('joinus')
+})
+
 
 app.listen(2301, function(){
     console.log("Le serveur écoute sur le port 2301. Logs :")
